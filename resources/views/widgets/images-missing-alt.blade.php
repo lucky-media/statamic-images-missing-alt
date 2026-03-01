@@ -1,17 +1,16 @@
-<div class="card p-0 overflow-hidden h-full">
+<ui-card class="card p-0 overflow-hidden h-full">
     <div class="flex justify-between items-center py-4 px-4">
-        <h2>
+        <ui-heading size="xl">
             <div class="flex items-center">
-                <div class="h-6 w-6 rtl:ml-2 ltr:mr-2 text-gray-800 dark:text-dark-200">
-                    @cp_svg('icons/light/assets')
-                </div>
-                @if (count($containers) === 1)
-                    <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
-                @else
-                    <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
-                @endif
+                <ui-icon name="file-content-list" />
             </div>
-        </h2>
+            @if (count($containers) === 1)
+                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
+            @else
+                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
+            @endif
+    </div>
+    </ui-heading>
     </div>
     <div class="content px-4 pb-2">
         <p>
@@ -26,23 +25,24 @@
         <table tabindex="0" class="data-table">
             <tbody tabindex="0">
     @endif
-    @forelse ($assets as $asset)
-        <tr class="sortable-row outline-none" tabindex="0">
-            <td>
-                <div class="flex items-center">
-                    <div class="little-dot mr-2 bg-red-500"></div>
-                    <a href="{{ $asset['edit_url'] }}" aria-label="{{ __('statamic-images-missing-alt::images-missing-alt.edit') }}">{{ $asset['basename'] }}</a>
+            @forelse ($assets as $asset)
+                <tr class="sortable-row outline-none" tabindex="0">
+                    <td>
+                        <div class="flex items-center">
+                            <div class="little-dot mr-2 bg-red-500"></div>
+                            <a href="{{ $asset['edit_url'] }}"
+                                aria-label="{{ __('statamic-images-missing-alt::images-missing-alt.edit') }}">{{ $asset['basename'] }}</a>
+                        </div>
+                    </td>
+                    <td class="actions-column"></td>
+                </tr>
+            @empty
+                <div class="content p-4">
+                    <p>{{ __('statamic-images-missing-alt::images-missing-alt.done') }}</p>
                 </div>
-            </td>
-            <td class="actions-column"></td>
-        </tr>
-    @empty
-        <div class="content p-4">
-            <p>{{ __('statamic-images-missing-alt::images-missing-alt.done') }}</p>
-        </div>
-    @endforelse
-    @if ($assets)
-            </tbody>
-        </table>
-    @endif
-</div>
+            @endforelse
+            @if ($assets)
+                    </tbody>
+                </table>
+            @endif
+</ui-card>

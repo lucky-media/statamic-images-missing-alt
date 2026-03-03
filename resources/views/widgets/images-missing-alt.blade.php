@@ -1,19 +1,21 @@
 <ui-card class="card p-0 overflow-hidden h-full">
     <div class="flex justify-between items-center py-4 px-4">
-        <div class="flex items-center">
-            <ui-icon name="file-content-list" />
+        <div class="inline-flex">
+            <div class="flex items-center">
+                <ui-icon name="file-content-list" class="mr-2" />
+            </div>
+            @if (count($containers) === 1)
+                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
+            @else
+                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
+            @endif
         </div>
-        @if (count($containers) === 1)
-            <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
-        @else
-            <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
-        @endif
     </div>
-    <div class="content px-4 pb-2">
+    <div class="content px-4 pb-2 text-gray-50">
         <p>
             {{ __('statamic-images-missing-alt::images-missing-alt.explanation') }}
         </p>
-        <p class="font-bold">
+        <p class="font-bold mt-3">
             {{ trans_choice('statamic-images-missing-alt::images-missing-alt.count', $amount, ['amount' => $amount]) }}
         </p>
     </div>
@@ -34,9 +36,9 @@
                     <td class="actions-column"></td>
                 </tr>
             @empty
-                <div class="content p-4">
-                    <p>{{ __('statamic-images-missing-alt::images-missing-alt.done') }}</p>
-                </div>
+                <tr>
+                    <p class="p-4 ml-4">{{ __('statamic-images-missing-alt::images-missing-alt.done') }}</p>
+                </tr>
             @endforelse
             @if ($assets)
                     </tbody>

@@ -1,16 +1,13 @@
 <ui-card class="card p-0 overflow-hidden h-full">
     <div class="flex justify-between items-center py-4 px-4">
-        <ui-heading size="xl">
-            <div class="flex items-center">
-                <ui-icon name="file-content-list" />
-            </div>
-            @if (count($containers) === 1)
-                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
-            @else
-                <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
-            @endif
-    </div>
-    </ui-heading>
+        <div class="flex items-center">
+            <ui-icon name="file-content-list" />
+        </div>
+        @if (count($containers) === 1)
+            <span>{{ __('statamic-images-missing-alt::images-missing-alt.title-for-container', ['container' => $containers[0]]) }}</span>
+        @else
+            <span>{{ __('statamic-images-missing-alt::images-missing-alt.title') }}</span>
+        @endif
     </div>
     <div class="content px-4 pb-2">
         <p>
